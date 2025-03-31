@@ -1,25 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorful Buttons</title>
+    <title>Colorful Buttons and Sign-In</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            transition: background-color 0.3s;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .sign-in-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .sign-in-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sign-in-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .sign-in-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .sign-in-container button:hover {
+            background-color: #357AE8;
+        }
+
+        .image-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .button-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
+            width: 300px;
         }
 
         .btn {
@@ -32,6 +93,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn:hover {
@@ -43,16 +108,90 @@
         .facebook { background-color: #4267B2; }
         .twitter { background-color: #1DA1F2; }
         .youtube { background-color: #FF0000; }
+        .heamanth { background-color: #4CAF50; }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <a href="https://www.google.com" class="btn google" target="_blank">Go to Google</a>
-        <a href="https://www.facebook.com" class="btn facebook" target="_blank">Go to Facebook</a>
-        <a href="https://www.twitter.com" class="btn twitter" target="_blank">Go to Twitter</a>
-        <a href="https://www.youtube.com" class="btn youtube" target="_blank">Go to YouTube</a>
+    <div class="container">
+        <!-- Sign-In Form Section (Left side) -->
+        <div class="sign-in-container">
+            <h2>Sign In</h2>
+            <form id="sign-in-form" action="#" method="POST">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Right Side Content -->
+        <div>
+            <!-- Image Section -->
+            <div class="image-container">
+                <img src="https://via.placeholder.com/800x400" alt="Example Image">
+            </div>
+
+            <!-- Dark Mode Toggle Button -->
+            <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+            <!-- Buttons Section -->
+            <div class="button-container">
+                <a href="https://www.google.com" class="btn google" target="_blank" data-tooltip="Search the web on Google">
+                    <i class="fab fa-google"></i> Go to Google
+                </a>
+                <a href="https://www.facebook.com" class="btn facebook" target="_blank" data-tooltip="Connect with friends on Facebook">
+                    <i class="fab fa-facebook-f"></i> Go to Facebook
+                </a>
+                <a href="https://www.twitter.com" class="btn twitter" target="_blank" data-tooltip="See what's happening on Twitter">
+                    <i class="fab fa-twitter"></i> Go to Twitter
+                </a>
+                <a href="https://www.youtube.com" class="btn youtube" target="_blank" data-tooltip="Watch videos on YouTube">
+                    <i class="fab fa-youtube"></i> Go to YouTube
+                </a>
+                <!-- Heamanth Button -->
+                <a href="https://www.heamanth.online.com" class="btn heamanth" target="_blank" data-tooltip="Visit Heamanth's website">
+                    <i class="fas fa-user"></i> Heamanth
+                </a>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Toggle dark mode
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        // Example form submission logic (you would replace this with actual handling logic)
+        const signInForm = document.getElementById('sign-in-form');
+        signInForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent actual submission for demo purposes
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // For demo purposes, we'll just log the input values to the console
+            console.log('Email:', email);
+            console.log('Password:', password);
+
+            // You would handle the sign-in logic here (e.g., send the data to a server)
+        });
+    </script>
 </body>
 </html>
-
-
