@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Buttons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .google { background-color: #4285F4; }
+        .facebook { background-color: #4267B2; }
+        .twitter { background-color: #1DA1F2; }
+        .youtube { background-color: #FF0000; }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <a href="https://www.google.com" class="btn google" target="_blank">Go to Google</a>
+        <a href="https://www.facebook.com" class="btn facebook" target="_blank">Go to Facebook</a>
+        <a href="https://www.twitter.com" class="btn twitter" target="_blank">Go to Twitter</a>
+        <a href="https://www.youtube.com" class="btn youtube" target="_blank">Go to YouTube</a>
+    </div>
+</body>
+</html>
+
+
