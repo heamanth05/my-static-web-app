@@ -28,8 +28,7 @@ jobs:
         id: idtoken
         with:
           script: |
-            const core = require('@actions/core');
-            const token = await core.getIDToken();
+            const token = await github.token;  # Retrieve the token from GitHub
             return token;
           result-encoding: string
 
@@ -41,7 +40,7 @@ jobs:
           action: "upload"
           app_location: "/"  # Location of the static files (index.html)
           api_location: ""  # No API, so leave empty
-          output_location: "."  # Since it's already built, deploy the files in the root directory
+          output_location: "."  # Deploy the static files in the root directory
           github_id_token: ${{ steps.idtoken.outputs.result }}
           skip_app_build: true  # Skip build as you have static files only
 
