@@ -4,196 +4,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colorful Buttons and Sign-In</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Nature Adventure</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
+        /* Resetting margins and padding */
+        body, html {
             margin: 0;
-            background-color: #f0f0f0;
-            transition: background-color 0.3s;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
         }
 
-        .container {
+        /* Background Animation */
+        @keyframes movingClouds {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Full-screen background with moving clouds */
+        .hero {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1516117172878-4d75f63d4d11') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            animation: movingClouds 60s linear infinite;
             display: flex;
-            flex-direction: row;
-            gap: 50px;
-            width: 100%;
             justify-content: center;
-        }
-
-        .sign-in-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        .sign-in-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sign-in-container input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .sign-in-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4285F4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .sign-in-container button:hover {
-            background-color: #357AE8;
-        }
-
-        .image-container {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 300px;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            text-decoration: none;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .google { background-color: #4285F4; }
-        .facebook { background-color: #4267B2; }
-        .twitter { background-color: #1DA1F2; }
-        .youtube { background-color: #FF0000; }
-        .heamanth { background-color: #4CAF50; }
-
-        .dark-mode {
-            background-color: #121212;
             color: white;
+            text-align: center;
+            position: relative;
         }
 
-        .dark-mode-btn {
+        .hero-overlay {
             position: absolute;
-            top: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Main Header */
+        .hero h1 {
+            font-size: 4rem;
+            animation: fadeIn 3s ease-in-out;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .navbar a:hover {
+            background-color: #ff6f61;
+            border-radius: 5px;
+        }
+
+        /* Scroll to Top Button */
+        #scrollToTop {
+            position: fixed;
+            bottom: 20px;
             right: 20px;
-            padding: 10px;
+            background-color: #ff6f61;
+            color: white;
+            padding: 10px 15px;
             border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+        }
+
+        /* Image Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 50px 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Content Section */
+        .content {
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 800px;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            color: #ffcc00;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .content .btn {
+            background-color: #ff6f61;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .content .btn:hover {
+            background-color: #e45a48;
+        }
+
+        /* Footer */
+        footer {
             background-color: #333;
             color: white;
-            cursor: pointer;
-            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .content {
+                padding: 20px;
+            }
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sign-In Form Section (Left side) -->
-        <div class="sign-in-container">
-            <h2>Sign In</h2>
-            <form id="sign-in-form" action="#" method="POST">
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                <button type="submit">Sign In</button>
-            </form>
-        </div>
 
-        <!-- Right Side Content -->
-        <div>
-            <!-- Image Section -->
-            <div class="image-container">
-                <img src="https://via.placeholder.com/800x400" alt="Example Image">
-            </div>
-
-            <!-- Dark Mode Toggle Button -->
-            <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
-            <!-- Buttons Section -->
-            <div class="button-container">
-                <a href="https://www.google.com" class="btn google" target="_blank" data-tooltip="Search the web on Google">
-                    <i class="fab fa-google"></i> Go to Google
-                </a>
-                <a href="https://www.facebook.com" class="btn facebook" target="_blank" data-tooltip="Connect with friends on Facebook">
-                    <i class="fab fa-facebook-f"></i> Go to Facebook
-                </a>
-                <a href="https://www.twitter.com" class="btn twitter" target="_blank" data-tooltip="See what's happening on Twitter">
-                    <i class="fab fa-twitter"></i> Go to Twitter
-                </a>
-                <a href="https://www.youtube.com" class="btn youtube" target="_blank" data-tooltip="Watch videos on YouTube">
-                    <i class="fab fa-youtube"></i> Go to YouTube
-                </a>
-                <!-- Heamanth Button -->
-                <a href="https://www.heamanth.online.com" class="btn heamanth" target="_blank" data-tooltip="Visit Heamanth's website">
-                    <i class="fas fa-user"></i> Heamanth
-                </a>
-            </div>
-        </div>
+    <!-- Sticky Navbar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
     </div>
 
+    <!-- Hero Section with Moving Clouds -->
+    <div class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <h1>Discover the Beauty of Nature</h1>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="content">
+        <h2>Embark on Your Next Adventure</h2>
+        <p>From the depths of the oceans to the peaks of mountains, nature offers an endless adventure for the curious traveler. Start exploring today and let your journey unfold.</p>
+        <button class="btn">Explore More</button>
+    </div>
+
+    <!-- Image Gallery -->
+    <section id="gallery">
+        <h2 style="text-align: center; margin-bottom: 30px; color: #ffcc00;">Nature Gallery</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1506748686217-91aef6d36a93" alt="Nature 1">
+            <img src="https://images.unsplash.com/photo-1561948958-b7bde11c4e5a" alt="Nature 2">
+            <img src="https://images.unsplash.com/photo-1509021436665-5fa9b8acdb8a" alt="Nature 3">
+            <img src="https://images.unsplash.com/photo-1476345863940-8fc06a7b54ff" alt="Nature 4">
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop">↑</button>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Nature Adventures. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+    </footer>
+
+    <!-- Scroll to Top JavaScript -->
     <script>
-        // Toggle dark mode
-        function toggleDarkMode() {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-        }
+        // Show the scroll to top button when scrolling
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                document.getElementById("scrollToTop").style.display = "block";
+            } else {
+                document.getElementById("scrollToTop").style.display = "none";
+            }
+        };
 
-        // Example form submission logic (you would replace this with actual handling logic)
-        const signInForm = document.getElementById('sign-in-form');
-        signInForm.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent actual submission for demo purposes
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // For demo purposes, we'll just log the input values to the console
-            console.log('Email:', email);
-            console.log('Password:', password);
-
-            // You would handle the sign-in logic here (e.g., send the data to a server)
-        });
+        // Scroll to top when the button is clicked
+        document.getElementById("scrollToTop").onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
     </script>
+
 </body>
 </html>
 
